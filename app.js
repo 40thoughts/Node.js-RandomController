@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var indexPage = require('./routes/index');
+var printPage = require('./routes/print');
 
 var app = express();
 
@@ -28,8 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.set('appName', 'Random-Control');
+
+app.use('/', indexPage);
+app.use('/print', printPage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
