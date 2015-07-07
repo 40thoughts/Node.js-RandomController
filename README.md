@@ -1,4 +1,4 @@
-Random-Control
+Random-Controller
 ==============
 
 TODO

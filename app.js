@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('appName', 'Random-Control');
+app.set('appName', 'Random-Controller');
 
 app.use('/', indexPage);
 app.use('/print', printPage);
