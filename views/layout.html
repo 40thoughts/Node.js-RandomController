@@ -53,6 +53,11 @@
     <script>
       var socket = io();
 
+      $('#printer').submit(function(){    <!-- Printer -->
+        socket.emit('print text', $('#textToPrint').val());
+        $('#textToPrint').val('');
+        return false;
+      });    <!-- Printer End -->
       $('#sendMessage').submit(function(){    <!-- Chat -->
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
