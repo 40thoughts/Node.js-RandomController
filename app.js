@@ -5,11 +5,23 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
+var i18n = require('i18next');
 
 var indexPage = require('./routes/index');
 var printPage = require('./routes/print');
 
 var app = express();
+
+i18n.init({
+    lng: "en",
+    ns: { namespaces: ['ns.common', 'ns.app', 'ns.layout', 'ns.msg', 'ns.public', 'ns.special'], defaultNs: 'ns.common'},
+    preload: ['en', 'fr', 'dev'],
+    resSetPath: 'locales/__lng__/__ns__.json',
+    ignoreRoutes: ['images/', 'public/', 'css/', 'js/', 'fonts/'],
+    saveMissing: true,
+    debug: true
+});
+i18n.registerAppHelper(app);
 
 // view engine setup
 app.engine('html', swig.renderFile);
@@ -27,6 +39,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(i18n.handle);
 
 app.set('appName', 'Random-Controller');
 
@@ -63,6 +76,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

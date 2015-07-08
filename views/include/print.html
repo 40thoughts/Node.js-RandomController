@@ -2,12 +2,12 @@
   <form id="printer" class="col-md-3 well">
     <div class="row-fluid">
     <div class="form-group has-success">
-      <label class="control-label" for="textToPrint">Text to print :</label>
+      <label class="control-label" for="textToPrint">{{ t("ns.app:printer.textToPrint") }}</label>
       <textarea name="printText" id="textToPrint" cols="32" rows="15" style="resize:none"></textarea>
     </div>
     </div>
-    <button type="submit" class="btn btn-primary span6">Submit</button>
-    <button type="reset" class="btn span6">Clear</button>
+    <button type="submit" class="btn btn-primary span6">{{ t("ns.common:print")|capitalize }}</button>
+    <button type="reset" class="btn span6">{{ t("ns.common:clear")|capitalize }}</button>
   </form>
 </div>
 {% if message %}
